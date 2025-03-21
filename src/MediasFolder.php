@@ -42,7 +42,6 @@ class MediasFolder
     ], $this->extraData->all());
   }
 
-
   public function sets(array $properties)
   {
     foreach ($properties as $key => $value) {

@@ -339,6 +339,8 @@ class MediasList
     $asset = false;
     $up = false;
 
+    // that's for a jizy asset
+    // my homemade js platform
     if (preg_match("/\{\{ jizyAsset\(\'([^\']+)\'\) \}\}/", $file, $m)) {
       $asset = true;
       $file = $m[1];

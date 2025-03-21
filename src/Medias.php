@@ -17,8 +17,8 @@ use JDZ\Medias\MediasFolder;
  */
 class Medias
 {
-  private MediasList $mediaList;
-  private string $publicPath;
+  protected string $publicPath;
+  protected MediasList $mediaList;
 
   public function __construct(string $publicPath)
   {
@@ -31,7 +31,7 @@ class Medias
     return $this->mediaList;
   }
 
-  public function loadMediaFolders(array $configFolders=[]): array
+  public function loadMediaFolders(array $configFolders = []): array
   {
     $folders = [];
 
