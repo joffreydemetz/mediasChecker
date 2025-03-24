@@ -210,11 +210,11 @@ class MediasList
     return $this->files;
   }
 
-  public function getMediaFolders(string $path, array $arbo = []): array
+  public function getMediaFolders(string $basePath, string $path, array $arbo = []): array
   {
-    foreach ($this->folders($path) as $folder) {
-      $arbo[] = $folder;
-      $arbo = $this->getMediaFolders($path . $folder . '/', $arbo);
+    foreach ($this->folders($basePath . $path) as $folder) {
+      $arbo[] = $path . $folder . '/';
+      $arbo = $this->getMediaFolders($basePath, $path . $folder . '/', $arbo);
     }
     return $arbo;
   }

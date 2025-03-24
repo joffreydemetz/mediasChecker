@@ -35,7 +35,7 @@ class Medias
   {
     $folders = [];
 
-    $folders['media/'] = new MediasFolder('media', 'media/', 'media', [
+    $folders['media/'] = new MediasFolder('media/', 'media', [
       'noPng' => false,
       'system' => true,
       'yml' => false,
@@ -50,13 +50,13 @@ class Medias
       unset($extraData['type']);
       $extraData['yml'] = true;
 
-      $folders['media/' . $folder->name . '/'] = new MediasFolder($folder->name, 'media/' . $folder->name . '/', 'media', $extraData);
+      $folders['media/' . $folder->name . '/'] = new MediasFolder('media/' . $folder->name . '/', 'media', $extraData);
     }
 
-    $mediaFolders = $this->mediaList->getMediaFolders($this->publicPath . 'media/');
+    $mediaFolders = $this->mediaList->getMediaFolders($this->publicPath, 'media/');
     foreach ($mediaFolders as $mediaFolder) {
-      if (!isset($folders['media/' . $mediaFolder . '/'])) {
-        $folders['media/' . $mediaFolder . '/'] = new MediasFolder($mediaFolder, 'media/' . $mediaFolder . '/', 'media', [
+      if (!isset($folders[$mediaFolder])) {
+        $folders[$mediaFolder] = new MediasFolder($mediaFolder, 'media', [
           'noPng' => false,
           'system' => true,
           'yml' => false,
@@ -66,13 +66,13 @@ class Medias
       }
     }
 
-    $folders['fonts/'] = new MediasFolder('fonts', 'fonts/', 'fonts', [
+    $folders['fonts/'] = new MediasFolder('fonts/', 'fonts', [
       'noPng' => true,
       'system' => true,
       'yml' => false,
     ]);
 
-    $folders['assets/images/'] = new MediasFolder('images', 'assets/images/', 'assets', [
+    $folders['assets/images/'] = new MediasFolder('assets/images/', 'assets', [
       'noPng' => false,
       'system' => true,
       'width' => 1200,
@@ -80,10 +80,10 @@ class Medias
       'yml' => false,
     ]);
 
-    $assetsFolders = $this->mediaList->getMediaFolders($this->publicPath . '/assets/images/');
+    $assetsFolders = $this->mediaList->getMediaFolders($this->publicPath, 'assets/images/');
     foreach ($assetsFolders as $assetFolder) {
-      if (!isset($folders['assets/images/' . $assetFolder . '/'])) {
-        $folders['assets/images/' . $assetFolder . '/'] = new MediasFolder($assetFolder, 'assets/images/' . $assetFolder . '/', 'assets', [
+      if (!isset($folders[$assetFolder])) {
+        $folders[$assetFolder] = new MediasFolder($assetFolder, 'assets', [
           'noPng' => false,
           'system' => true,
           'yml' => false,
@@ -93,10 +93,10 @@ class Medias
       }
     }
 
-    $usersFolders = $this->mediaList->getMediaFolders($this->publicPath . 'users/');
+    $usersFolders = $this->mediaList->getMediaFolders($this->publicPath, 'users/');
     foreach ($usersFolders as $usersFolder) {
-      if (!isset($folders['users/' . $usersFolder . '/'])) {
-        $folders['users/' . $usersFolder . '/'] = new MediasFolder($usersFolder, 'users/' . $usersFolder . '/', 'assets', [
+      if (!isset($folders[$usersFolder])) {
+        $folders[$usersFolder] = new MediasFolder($usersFolder, 'assets', [
           'noPng' => false,
           'system' => false,
           'yml' => false,

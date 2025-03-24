@@ -16,14 +16,12 @@ use JDZ\Utils\Data as jData;
  */
 class MediasFolder
 {
-  public string $name;
   public string $path;
   public string $type;
   public jData $extraData;
 
-  public function __construct(string $name, string $path, string $type, array $extraData = [])
+  public function __construct(string $path, string $type, array $extraData = [])
   {
-    $this->name = $name;
     $this->path = $path;
     $this->type = $type;
     $this->extraData = new jData();
@@ -36,7 +34,6 @@ class MediasFolder
   public function all(): array
   {
     return array_merge([
-      'name' => $this->name,
       'path' => $this->path,
       'type' => $this->type,
     ], $this->extraData->all());
