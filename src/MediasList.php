@@ -175,6 +175,38 @@ class MediasList
     }
   }
 
+  public function parseJsFiles(string $filesPath, array $fileExts = ['js'], ?callable $cb = null)
+  {
+    $files = $this->files($filesPath, $fileExts, null, true);
+
+    foreach ($files as $file) {
+      $file = $this->normalizePath($file);
+
+      if (!@file_exists($file) || false === ($content = \file_get_contents($file))) {
+        continue;
+      }
+
+      if ('' === $content) {
+        continue;
+      }
+
+      $file = str_replace($filesPath, "", $file);
+
+      preg_match_all("/(assets\/images\/[^\"]+)/", $content, $m);
+
+      if (count($m[0]) > 0) {
+        for ($i = 0, $n = count($m[0]); $i < $n; $i++) {
+          $type = 'assets';
+          $value = $m[1][$i];
+
+          if (false !== ($data = $this->parseDomAsset($value, $cb, $file))) {
+            $this->addPresenceInJs($data->folder . $data->file, $file, $data->type . '.js-image', $data->asset);
+          }
+        }
+      }
+    }
+  }
+
   public function add(MediasFile $item, bool $exists = false): void
   {
     $path = str_replace('.', '_', $item->folder . $item->name);
@@ -297,6 +329,20 @@ class MediasList
     }
 
     $item->css[] = (object)[
+      'path' => $filepath,
+      'type' => $type,
+      'asset' => $asset,
+    ];
+    $item->occurences++;
+  }
+
+  private function addPresenceInJs(string $path, string $filepath, string $type, bool $asset = true): void
+  {
+    if (false === ($item = $this->get($path))) {
+      throw new \Exception('MediasFile ' . $path . ' is not set');
+    }
+
+    $item->js[] = (object)[
       'path' => $filepath,
       'type' => $type,
       'asset' => $asset,
