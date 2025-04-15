@@ -25,6 +25,7 @@ class MediasFile
   public array $db = [];
   public array $tmpl = [];
   public array $css = [];
+  public array $js = [];
 
   public function __construct(string $folder, string $name, string $type = 'media')
   {

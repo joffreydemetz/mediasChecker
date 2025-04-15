@@ -391,6 +391,10 @@ class MediasList
       $asset = true;
       $file = $m[1];
     }
+    if (preg_match("/\{\{ jizyImg\(\'([^\']+)\'\) \}\}/", $file, $m)) {
+      $asset = true;
+      $file = $m[1];
+    }
 
     // ignore external paths
     if (preg_match("/^https?:\\//", $file)) {
