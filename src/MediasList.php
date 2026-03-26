@@ -50,7 +50,7 @@ class MediasList
     $images = $root->getElementsByTagName('img');
     if ($images->length) {
       foreach ($images as $img) {
-        if (false === strpos($img->getAttribute('src'), 'media/')) {
+        if (false === strpos($img->getAttribute('src'), Medias::$mediaRootFolder . '/')) {
           continue;
         }
 
@@ -65,7 +65,7 @@ class MediasList
     $as = $root->getElementsByTagName('a');
     if ($as->length) {
       foreach ($as as $a) {
-        if (false === strpos($a->getAttribute('href'), 'media/')) {
+        if (false === strpos($a->getAttribute('href'), Medias::$mediaRootFolder . '/')) {
           continue;
         }
 
@@ -498,11 +498,6 @@ class MediasList
     }
 
     return $folders;
-  }
-
-  private function toIterable($list): iterable
-  {
-    return \is_array($list) || $list instanceof \Traversable ? $list : [$list];
   }
 
   private function normalizePath(string $path): string

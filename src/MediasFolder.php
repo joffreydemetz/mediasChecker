@@ -9,7 +9,7 @@
 
 namespace JDZ\Medias;
 
-use JDZ\Utils\Data as jData;
+use JDZ\Medias\ExtraData;
 
 /**
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>
@@ -18,13 +18,13 @@ class MediasFolder
 {
   public string $path;
   public string $type;
-  public jData $extraData;
+  public ExtraData $extraData;
 
   public function __construct(string $path, string $type, array $extraData = [])
   {
     $this->path = $path;
     $this->type = $type;
-    $this->extraData = new jData();
+    $this->extraData = new ExtraData();
 
     if ($extraData) {
       $this->extraData->sets($extraData);
