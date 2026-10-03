@@ -38,7 +38,7 @@ class Medias
   {
     $folders = [];
 
-    $folders[$this->mediaRootFolder . '/'] = new MediasFolder($this->mediaRootFolder . '/', 'media', [
+    $folders[self::$mediaRootFolder . '/'] = new MediasFolder(self::$mediaRootFolder . '/', 'media', [
       'width' => 1200,
       'height' => 1200,
     ]);
@@ -49,10 +49,10 @@ class Medias
       unset($extraData['path']);
       unset($extraData['type']);
 
-      $folders[$this->mediaRootFolder . '/' . $folder->name . '/'] = new MediasFolder($this->mediaRootFolder . '/' . $folder->name . '/', 'media', $extraData);
+      $folders[self::$mediaRootFolder . '/' . $folder->name . '/'] = new MediasFolder(self::$mediaRootFolder . '/' . $folder->name . '/', 'media', $extraData);
     }
 
-    $mediaFolders = $this->mediaList->getMediaFolders($this->publicPath, $this->mediaRootFolder . '/');
+    $mediaFolders = $this->mediaList->getMediaFolders($this->publicPath, self::$mediaRootFolder . '/');
     foreach ($mediaFolders as $mediaFolder) {
       if (!isset($folders[$mediaFolder])) {
         $folders[$mediaFolder] = new MediasFolder($mediaFolder, 'media', [
