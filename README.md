@@ -12,7 +12,6 @@ composer require jdz/mediaschecker
 
 - PHP 8.2 or higher
 - symfony/finder ^7.4
-- jdz/data ^2.0
 
 ## Usage
 
