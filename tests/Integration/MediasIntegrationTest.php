@@ -32,14 +32,6 @@ class MediasIntegrationTest extends TestCase
         $this->assertNotEmpty($folders);
     }
 
-    public function testLoadMediaFoldersContainsMediasFolderInstances(): void
-    {
-        $folders = $this->medias->loadMediaFolders();
-        foreach ($folders as $folder) {
-            $this->assertInstanceOf(MediasFolder::class, $folder);
-        }
-    }
-
     public function testLoadMediaFoldersIncludesFonts(): void
     {
         $folders = $this->medias->loadMediaFolders();

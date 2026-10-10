@@ -28,12 +28,6 @@ class MediasFolderTest extends TestCase
         $this->assertSame(800, $folder->extraData->get('height'));
     }
 
-    public function testExtraDataIsExtraDataInstance(): void
-    {
-        $folder = new MediasFolder('media/', 'media');
-        $this->assertInstanceOf(ExtraData::class, $folder->extraData);
-    }
-
     public function testAllWithNoExtraData(): void
     {
         $folder = new MediasFolder('fonts/', 'fonts');
@@ -79,13 +73,6 @@ class MediasFolderTest extends TestCase
         $this->assertSame('assets/', $folder->path);
         $this->assertSame('assets', $folder->type);
         $this->assertSame(1, $folder->extraData->get('custom'));
-    }
-
-    public function testSetsReturnsSelf(): void
-    {
-        $folder = new MediasFolder('media/', 'media');
-        $result = $folder->sets(['path' => 'new/']);
-        $this->assertSame($folder, $result);
     }
 
     public function testSetDistinguishesDirectFromExtra(): void

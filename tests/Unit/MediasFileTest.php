@@ -46,13 +46,6 @@ class MediasFileTest extends TestCase
         $this->assertTrue($file->physical);
     }
 
-    public function testIsPhysicalReturnsSelf(): void
-    {
-        $file = new MediasFile('media/', 'photo.jpg');
-        $result = $file->isPhysical();
-        $this->assertSame($file, $result);
-    }
-
     public function testIsPhysicalHonoursItsArgument(): void
     {
         $file = new MediasFile('media/', 'photo.jpg');

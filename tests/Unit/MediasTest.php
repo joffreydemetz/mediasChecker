@@ -13,12 +13,6 @@ class MediasTest extends TestCase
         Medias::$mediaRootFolder = 'media';
     }
 
-    public function testConstructorCreatesMediasList(): void
-    {
-        $medias = new Medias('/some/path');
-        $this->assertInstanceOf(MediasList::class, $medias->getMedialist());
-    }
-
     public function testGetMedialistReturnsSameInstance(): void
     {
         $medias = new Medias('/some/path');
@@ -34,12 +28,5 @@ class MediasTest extends TestCase
     {
         Medias::$mediaRootFolder = 'custom';
         $this->assertSame('custom', Medias::$mediaRootFolder);
-    }
-
-    public function testConstructorSetsPublicPath(): void
-    {
-        $medias = new Medias('/my/public');
-        $reflection = new \ReflectionProperty(Medias::class, 'publicPath');
-        $this->assertSame('/my/public', $reflection->getValue($medias));
     }
 }

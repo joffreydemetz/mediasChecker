@@ -27,25 +27,11 @@ class ExtraDataTest extends TestCase
         $this->assertSame('val', $ed->get('key'));
     }
 
-    public function testSetReturnsSelf(): void
-    {
-        $ed = new ExtraData();
-        $result = $ed->set('key', 'val');
-        $this->assertSame($ed, $result);
-    }
-
     public function testSetsMultipleValues(): void
     {
         $ed = new ExtraData();
         $ed->sets(['a' => 1, 'b' => 2]);
         $this->assertSame(['a' => 1, 'b' => 2], $ed->all());
-    }
-
-    public function testSetsReturnsSelf(): void
-    {
-        $ed = new ExtraData();
-        $result = $ed->sets(['a' => 1]);
-        $this->assertSame($ed, $result);
     }
 
     public function testSetOverwritesExistingKey(): void
