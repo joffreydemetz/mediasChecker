@@ -1,5 +1,5 @@
 composer.lock
 /vendor/
-.phpunit.cache
-/.claude/
 /.phpunit.cache/
+/.claude/
+/coverage/
