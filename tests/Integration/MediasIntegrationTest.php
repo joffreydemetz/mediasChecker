@@ -3,8 +3,6 @@
 namespace JDZ\Medias\Tests\Integration;
 
 use JDZ\Medias\Medias;
-use JDZ\Medias\MediasFolder;
-use JDZ\Medias\MediasList;
 use PHPUnit\Framework\TestCase;
 
 class MediasIntegrationTest extends TestCase

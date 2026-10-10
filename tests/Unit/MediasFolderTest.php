@@ -2,7 +2,6 @@
 
 namespace JDZ\Medias\Tests\Unit;
 
-use JDZ\Medias\ExtraData;
 use JDZ\Medias\MediasFolder;
 use PHPUnit\Framework\TestCase;
 

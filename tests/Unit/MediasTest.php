@@ -3,7 +3,6 @@
 namespace JDZ\Medias\Tests\Unit;
 
 use JDZ\Medias\Medias;
-use JDZ\Medias\MediasList;
 use PHPUnit\Framework\TestCase;
 
 class MediasTest extends TestCase
