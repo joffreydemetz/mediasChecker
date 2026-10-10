@@ -36,7 +36,7 @@ class MediasFile
 
   public function isPhysical(bool $physical = true)
   {
-    $this->physical = true;
+    $this->physical = $physical;
     return $this;
   }
 
@@ -53,6 +53,10 @@ class MediasFile
     }
 
     foreach ($this->css as $el) {
+      $occurences[] = str_replace($rootPath, '', $el->path) . ' (' . $el->type . ')';
+    }
+
+    foreach ($this->js as $el) {
       $occurences[] = str_replace($rootPath, '', $el->path) . ' (' . $el->type . ')';
     }
 

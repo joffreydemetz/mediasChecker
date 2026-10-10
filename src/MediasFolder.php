@@ -54,6 +54,6 @@ class MediasFolder
     } else {
       $this->extraData->set($name, $value);
     }
-    return false;
+    return $this;
   }
 }

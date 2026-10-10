@@ -66,12 +66,10 @@ class MediasFolderTest extends TestCase
         $this->assertSame('value', $folder->extraData->get('custom'));
     }
 
-    public function testSetReturnsFalse(): void
+    public function testSetReturnsTheFolder(): void
     {
         $folder = new MediasFolder('media/', 'media');
-        $result = $folder->set('path', 'new/');
-        // Note: set() returns false instead of $this (unlike sets())
-        $this->assertFalse($result);
+        $this->assertSame($folder, $folder->set('path', 'new/'));
     }
 
     public function testSetsMultipleProperties(): void

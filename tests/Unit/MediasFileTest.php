@@ -53,12 +53,15 @@ class MediasFileTest extends TestCase
         $this->assertSame($file, $result);
     }
 
-    public function testIsPhysicalIgnoresParameter(): void
+    public function testIsPhysicalHonoursItsArgument(): void
     {
         $file = new MediasFile('media/', 'photo.jpg');
-        // Note: isPhysical() ignores its $physical parameter and always sets true
-        $file->isPhysical(false);
+
+        $file->isPhysical();
         $this->assertTrue($file->physical);
+
+        $file->isPhysical(false);
+        $this->assertFalse($file->physical);
     }
 
     public function testGetOccurencesEmpty(): void
@@ -115,14 +118,13 @@ class MediasFileTest extends TestCase
         $this->assertCount(1, $result);
     }
 
-    public function testGetOccurencesDoesNotIncludeJs(): void
+    public function testGetOccurencesIncludesJs(): void
     {
         $file = new MediasFile('assets/images/', 'banner.svg', 'assets');
         $file->js[] = (object)['path' => '/root/js/app.js', 'type' => 'assets.js-image', 'asset' => false];
 
-        // Note: getOccurences() does not iterate $this->js
         $result = $file->getOccurences('/root/');
-        $this->assertSame([], $result);
+        $this->assertSame(['js/app.js (assets.js-image)'], $result);
     }
 
     public function testRootPropertyIsUninitialized(): void
